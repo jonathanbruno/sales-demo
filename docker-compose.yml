@@ -1,0 +1,22 @@
+version: "3"
+services:
+  # DATABASE
+  postgres:
+    image: postgres:9.6.6
+    environment:
+      POSTGRES_DB: dbsalesdemo
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - "alpha_postgres_db_data:/var/lib/postgresql/data:cached"
+  # IN MEMORY DATABASE
+  redis:
+    image: redis:alpine
+    command: redis-server --requirepass alpha_redis_pass
+    ports:
+      - "6379:6379"
+
+volumes:
+  alpha_postgres_db_data:

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-node-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-node
+  template:
+    metadata:
+      labels:
+        app: hello-node
+    spec:
+      containers:
+      - name: rails-app
+        image: jonathanbruno/rails-demo-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
